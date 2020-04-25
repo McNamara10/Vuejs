@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Prima Applicazione</h1>
+        <hr>
+        <div id="applicazione_isjeady">
+            <h1> {{ title }}</h1>
+            <button @click="changeText()">Cambia</button>
+            <hr>
+            <button @click="destroy()">Destroy</button>
+
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#applicazione_isjeady',
+        data : {
+           title : 'Titolo', 
+        },
+
+        beforeCreate: function() {
+            console.log('before created');
+        },
+        created: function() {
+            console.log('created');
+        },
+
+        beforeMount: function() {
+            console.log('before mount');
+        },
+        created: function() {
+            console.log('created');
+        },
+
+        mount: function() {
+            console.log('mount');
+        },
+
+        beforeUpdate: function() {
+            console.log('before update');
+        },
+
+        update: function() {
+            console.log('update');
+        },
+
+        beforeDestroy: function() {
+            console.log('before destroy');
+        },
+
+        destroy: function() {
+            console.log('destroy');
+        },
+        methods : {
+           changeText(){
+                this.title = 'Nuovo Titolo';
+           } ,
+           destroy(){
+               this.$destroy();
+           }
+        }
+    })
+
+    
+</script>
+
+
+</html>
