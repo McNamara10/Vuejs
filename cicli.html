@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Operazioni condizionali e cicli</h1>
+        <hr>
+        <div id="applicazione_isjeady">
+           
+            <ul>
+                <li v-for="(colore,index) in colori">{{ index }} :{{ colore }}</li>
+            </ul>
+            <ul>
+                <li v-for="(articolo,index) in articoli" :key="articolo.id"> <!-- Rende unico il ciclo assegnando una key-->
+                    <h2>Articolo Numero : {{ index }}:</h2>
+                    <h5  v-for="(attributo,key,i) in articolo">
+                        {{ i }} - {{ key }} : {{ attributo }}
+                    </h5>
+                </li>
+            </ul>
+
+        
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#applicazione_isjeady',
+        data : {
+            colori : ['rosso','bianco','verde','rosso'],
+            articoli : [
+            { id : Math.random(),nome : 'mouse' , prezzo  : '25', 'categoria' : 'informatica' },
+            { id : Math.random(),nome : 'videocamera' , prezzo  : '250', 'categoria' : 'video' },
+            { id : Math.random(),nome : 'tv' , prezzo  : '500', 'categoria' : 'televisioni' },
+       ]
+        },
+
+        methods : {
+            
+        }
+    })
+
+    
+</script>
+
+
+</html>
