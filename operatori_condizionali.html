@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Eventi Vue.js</h1>
+        <hr>
+        <div id="applicazione_isjeady">
+           <h2>Contatore</h2>
+
+            <!-- div condizionali-->
+
+            <template v-if="min != max">  
+                <p style="font-size: 12em;">{{ counter }}</p>
+                <div class="row">
+                            <div class="col-6">
+                                <button :disable='maxDisable' @click="changeCounter($event,'+')" style="font-size:6em">+</button>
+                            </div>
+                            <div class="col-6">
+                                <button :disable='minDisable' @click="changeCounter($event,'-')" style="font-size:6em">-</button>
+                            </div>
+                        </div>
+            </template>
+
+            <template v-else="">
+                Errore min e max uguali!!
+            </template>
+
+         
+
+          
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#applicazione_isjeady',
+        data : {
+           min : 3,
+           max : 3,
+           minDisable: true,
+           maxDisable: false, 
+           counter: '0'
+        },
+
+        mounted : function() {
+            console.log("MONTATO CORRETTAMENTE");
+            this.counter= 3;
+        },
+
+        methods : {
+            changeCounter(event,direction) {
+                console.log("event :");
+                console.log(event);
+                console.log("changeCounter:"+direction);
+
+                if(direction=='+'){
+                    if(this.counter < this.max){
+                        this.counter++;
+                    }
+                }else if(direction=='-'){
+                    if(this.counter > this.min){
+                        this.counter--;
+                    }
+                }
+                if(this.counter >= this.max){
+                    this.minDisable = false;
+                    this.maxDisable = true;
+                }else if (this.counter <= this.min){
+                    this.minDisable = true;
+                    this.maxDisable = false;
+                }else{
+                    this.minDisable = true;
+                    this.maxDisable = false;
+                }
+
+
+            }
+        }
+
+     
+    })
+
+    
+</script>
+
+
+</html>
