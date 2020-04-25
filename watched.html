@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Watched Vue.js</h1>
+        <hr>
+        <div id="applicazione_isjeady">
+           <h2>Contatore</h2>
+           <p style="font-size: 12em;">{{ counter }}</p>
+
+           <div class="row">
+               <div class="col-6">
+                   <button v-on:click="changeCounter($event,'+')" style="font-size:6em">+</button>
+               </div>
+               <div class="col-6">
+                <button v-on:click="changeCounter($event,'-')" style="font-size:6em">-</button>
+            </div>
+            <hr>
+            <h2>{{ limitedF() }}</h2>
+            Computed
+            <h2>{{ limit }}</h2>
+            <h2>{{ textMy }}</h2>
+            <button @click="my">My</button>
+            <hr>
+            {{ nome }}
+            <hr>
+            <input v-model="nome">
+            <button @click="nome='Marco'">CHANGE</button>
+
+           </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#applicazione_isjeady',
+        data : {
+           counter: '0',
+           textMy: 0,
+           nome: ''
+        },
+
+        mounted : function() {
+            this.counter=3;
+            console.log("MONTATO CORRETTAMENTE");
+        },
+
+        computed: {
+            limit : function() {
+                console.log('-->computed');
+                if(this.counter <= 0){
+                    return 'MINORE';
+                }else{
+                    return 'MAGGIORE';
+                } 
+            }
+        },
+
+        watch: {
+            counter : function(value){
+                console.log(value);
+                if(value == 5){
+                    this.textMy="Valore 3";
+                }
+            }
+        },
+
+        methods : {
+            changeCounter(event,direction) {
+                //console.log("event :");
+                //console.log(event);
+                console.log("changeCounter:"+direction);
+
+                if(direction=='+'){ 
+                    this.counter++;
+                }else if(direction=='-'){
+                    this.counter--;
+                }
+            } ,
+
+            limitedF(){
+                console.log('FUNCTION');
+                if(this.counter <= 0){
+                    return 'MINORE';
+                }else{
+                    return 'MAGGIORE';
+                }
+            },
+            my(){
+                this.textMy= Math.random();
+            }
+        }
+    })
+
+       
+
+    
+</script>
+
+
+</html>
